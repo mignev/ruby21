@@ -43,6 +43,6 @@ fi
 ruby -r bundler -e 'puts "Used Ruby Version is #{RUBY_VERSION}"'
 
 pushd $OPENSHIFT_REPO_DIR/diy/
-  $bundle install --deployment
+  $bundle install --without development test --deployment
   rbenv rehash
 popd
