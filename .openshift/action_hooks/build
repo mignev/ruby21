@@ -23,14 +23,6 @@ if [ ! -d "${OPENSHIFT_DATA_DIR}/.rbenv/versions/2.1.0" ]; then
   rbenv global 2.1.0
 fi
 
-if [ ! -d "${OPENSHIFT_DATA_DIR}/.rbenv/plugins/bundler" ]; then
-  git clone -- git://github.com/carsomyr/rbenv-bundler.git \
-  $OPENSHIFT_DATA_DIR/.rbenv/plugins/bundler
-  rbenv rehash
-fi
-
-ruby -r bundler -e 'puts "Used Ruby Version is #{RUBY_VERSION}"'
-
 pushd $OPENSHIFT_REPO_DIR/diy/
   rbenv local 2.1.0
 popd
@@ -40,6 +32,14 @@ if [[ "$is_bundler_installed" != "true" ]]; then
   gem install bundler
   rbenv rehash
 fi
+
+if [ ! -d "${OPENSHIFT_DATA_DIR}/.rbenv/plugins/bundler" ]; then
+  git clone -- git://github.com/carsomyr/rbenv-bundler.git \
+  $OPENSHIFT_DATA_DIR/.rbenv/plugins/bundler
+  rbenv rehash
+fi
+
+ruby -r bundler -e 'puts "Used Ruby Version is #{RUBY_VERSION}"'
 
 pushd $OPENSHIFT_REPO_DIR/diy/
   bundle install --deployment
