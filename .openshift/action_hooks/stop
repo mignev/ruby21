@@ -1,10 +1,11 @@
 #!/bin/bash
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
-# The logic to stop your application should be put in this script.
-if [ -z "$(ps -ef | grep testrubyserver.rb | grep -v grep)" ]
+# The logic to stop your application should be put in this script
+if [ -z "$(ps -ef | grep "rails server" | grep -v grep | awk '{ print $2 }')" ]
 then
     client_result "Application is already stopped"
 else
-    kill `ps -ef | grep testrubyserver.rb | grep -v grep | awk '{ print $2 }'` > /dev/null 2>&1
+    kill -9 `ps -ef | grep "rails server" | grep -v grep | awk '{ print $2 }'` > /dev/null 2>&1
+    exit 0
 fi

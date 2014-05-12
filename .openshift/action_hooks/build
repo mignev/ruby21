@@ -16,7 +16,6 @@ alias gem="gem --config-file ${OPENSHIFT_DATA_DIR}.gemrc"
 
 . $OPENSHIFT_DATA_DIR/.rbenv/plugins/openshift-rbenv-installer/bin/rbenv-bootstrap-openshift
 
-alias bundle="${HOME}/.gem/bin/bundle"
 bundle="${HOME}/.gem/bin/bundle"
 
 if [ ! -d "${OPENSHIFT_DATA_DIR}/.rbenv/versions/2.1.0" ]; then
@@ -24,7 +23,7 @@ if [ ! -d "${OPENSHIFT_DATA_DIR}/.rbenv/versions/2.1.0" ]; then
   rbenv global 2.1.0
 fi
 
-pushd $OPENSHIFT_REPO_DIR/diy/
+pushd $OPENSHIFT_REPO_DIR/
   rbenv local 2.1.0
 popd
 
@@ -42,7 +41,7 @@ fi
 
 ruby -r bundler -e 'puts "Used Ruby Version is #{RUBY_VERSION}"'
 
-pushd $OPENSHIFT_REPO_DIR/diy/
-  $bundle install --without development test --deployment --path $OPENSHIFT_DATA_DIR/vendor/bundle
+pushd $OPENSHIFT_REPO_DIR/
+  $bundle install --deployment --path $OPENSHIFT_DATA_DIR/vendor/bundle
   rbenv rehash
 popd
