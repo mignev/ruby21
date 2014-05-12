@@ -15,5 +15,5 @@ alias gem="gem --config-file ${OPENSHIFT_DATA_DIR}.gemrc"
 
 pushd $OPENSHIFT_REPO_DIR/
   bundle="${HOME}/.gem/bin/bundle"
-  $bundle exec rails server -b $OPENSHIFT_DIY_IP -p $OPENSHIFT_INTERNAL_PORT -d
+  $bundle exec rails server -b $OPENSHIFT_DIY_IP -p $OPENSHIFT_DIY_PORT -d
 popd
