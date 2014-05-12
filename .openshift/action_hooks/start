@@ -3,4 +3,6 @@
 # script. The application will work only if it binds to
 # $OPENSHIFT_DIY_IP:8080
 export PATH=$OPENSHIFT_RUNTIME_DIR/bin:$PATH
-$OPENSHIFT_REPO_DIR/rails server -b $OPENSHIFT_INTERNAL_IP -p $OPENSHIFT_INTERNAL_PORT -d
+pushd $OPENSHIFT_REPO_DIR/
+  rails server -b $OPENSHIFT_INTERNAL_IP -p $OPENSHIFT_INTERNAL_PORT -d
+popd
